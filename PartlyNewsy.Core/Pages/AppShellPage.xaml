@@ -4,9 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PartlyNewsy.Core"
     x:Class="PartlyNewsy.Core.AppShellPage"
-    Shell.TabBarTitleColor="Red"
-    Shell.TabBarBackgroundColor="White"
-    Shell.TabBarDisabledColor="Gray">
+    Shell.TabBarTitleColor="Red">
 
     <TabBar>
         <Tab Title="News" Shell.NavBarIsVisible="False">

@@ -8,17 +8,17 @@ And all of this is done with a Xamarin.Forms feature called Shell.
 
 ## Episode Recap
 
-We're building a clone of the Microsoft News app. 
+We're building a clone of the Microsoft News app.
 
 ### Past Episodes 
 
-In [episode 1](https://channel9.msdn.com/Shows/Partly-Cloudy/Hello-News-Intro-project-structure-and-HTTP-requests?WT.mc_id=partlycloudy-c9-masoucou) we setup the project structure and started to call an Azure Function.
+In [episode 1](https://channel9.msdn.com/Shows/Partly-Cloudy/Hello-News-Intro-project-structure-and-HTTP-requests?WT.mc_id=partlycloudy-github-masoucou) we setup the project structure and started to call an Azure Function.
 
-Then in [episode 2](https://channel9.msdn.com/Shows/Partly-Cloudy/Inform-Me-Bing-News-API?WT.mc_id=partlycloudy-c9-masoucou) we made that Azure Function invoke the Bing News Search API, so we could view the news in our app.
+Then in [episode 2](https://channel9.msdn.com/Shows/Partly-Cloudy/Inform-Me-Bing-News-API?WT.mc_id=partlycloudy-github-masoucou) we made that Azure Function invoke the Bing News Search API, so we could view the news in our app.
 
 ### What Happened in This Episode
 
-In this episode we give our user interface some structure through [Xamarin.Forms Shell](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/?WT.mc_id=partlycloudy-c9-masoucou).
+In this episode we give our user interface some structure through [Xamarin.Forms Shell](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/?WT.mc_id=partlycloudy-github-masoucou).
 
 #### Xamarin.Forms Shell
 
@@ -41,7 +41,9 @@ This is the root page for Shell applications and everything is enclosed within `
 
 So our Shell page starts to look like this:
 
+<iframe>
 <script src="https://gist.github.com/codemillmatt/e9f7c564924cdef3ddaac9128fee57ee.js"></script>
+</iframe>
 
 One thing to note - if a `<TabBar>` element only has one `<Tab>` in it - it will _not_ display any tabs at all.
 
@@ -53,7 +55,9 @@ One thing to note - if a `<TabBar>` element only has one `<Tab>` in it - it will
 
 This is telling Shell - hey - I want a bunch of sub pages in here - so Shell says - let's put them along the top!
 
+<iframe>
 <script src="https://gist.github.com/codemillmatt/c805ec773676d8ee34f32a4f251abf4b.js"></script>
+</iframe>
 
 6. Then we spiced things up by adding graphics to the tabs along the bottom of the page.
 
@@ -77,6 +81,92 @@ And next week we get into authentication with App Center Auth!
 
 No ... there's a lot more to it than that.
 
+Shell can perform a lot of different types of navigation - and you can even stick with the regular Xamarin.Forms navigation framework if you like - but what I'm going to talk about here is sending parameters to a one page from another with Shell navigation binding.
+
+### The Routing
+
+For our purposes here, you can think of a route to a page as being similar to both a key/value and a relative URL
+
+It's like a key/value because when we define our route we do so like this: `Routing.RegisterRoute("articledetail", typeof(ArticleDetailPage));`
+
+So the string constant `articledetail` is the key that will always navigate to the value of `ArticleDetailPage`.
+
+And you perform that navigation in shell with `Shell.Current.GoToAsync("articledetail");`
+
+But it's like a relative URL because we can attach values at the end of the `articledetail` in query string format. Like a url.
+
+So ... if I wanted to pass along the url for an article. I could create a query parameter named `articleUrl` and attach the url to it.
+
+Then the full value for the route would look like this: `articledetail?articleUrl=THE-URL-GOES-HERE`. And I would pass that whole string to the `Shell.Current.GoToAsync()` function.
+
+But how to read the article url value out?
+
+There's a class attribute for that!
+
+On the page which you are navigating to - in this case `ArticleDetailPage` - you'd decorate it with an attribute similar to: `[QueryProperty("ArticleUrl", "articleUrl")]`
+
+That tells the page there will be a query string coming in with a key that has the name `articleUrl`. 
+
+So take whatever the value is for that key - and pop it into a property of that page which would be called `ArticleUrl`.
+
+Of course - we'd have to create that property too. And you can call the properties and query string parameters whatever you want - as long as you're consistent when navigating to the page.
+
 ## Styling the Shell
 
+Even though Shell is very prescriptive on how it lays out tabs, and flyouts - it doesn't limit you. In fact you can customize it a ton. In the video you saw how we hid the `NavigationBar`.
+
+Here I want to show you how you can make the app on Android look good. Go ahead an run the Android version of the app now. It'll look like this:
+
+![original Droid app](https://res.cloudinary.com/code-mill-technologies-inc/image/upload/e_shadow:40/v1572382972/1-allback_srijtv.png)
+
+Ugh - look at that bottom tab bar! It's all black and you can't see the disabled tab button. Let's change that.
+
+In the `AppShellPage.xaml` right below `Shell.TabBarColor="Red"` add this line: `Shell.TabBarBackgroundColor="White"`. If you're still running the app, hit save & XAML Hot Reload 🔥🔄will update the screen automatically for you. It'll look like this now:
+
+![Android app with white tab bar](https://res.cloudinary.com/code-mill-technologies-inc/image/upload/e_shadow:40/v1572382972/2-whiteback_beh5fc.png)
+
+That's a bit better - but we still can't see the disabled tab bar button. So add this right after the line you just did: `Shell.TabBarDisabledColor="Gray"`.
+
+Now we have:
+
+![Android with gray disabled tab bar buttons](https://res.cloudinary.com/code-mill-technologies-inc/image/upload/e_shadow:40/v1572382972/3-graydisabled_l5ds8k.png)
+
+![Android with gray disabled tab bar buttons - view 2](https://res.cloudinary.com/code-mill-technologies-inc/image/upload/e_shadow:40/v1572382972/4-graydisabled_hlkydv.png)
+
+Yeah! Now this app is starting to look pretty darn good!
+
 ## Adding Custom Fonts
+
+One thing that we did during the video was use a special font that had glyphs in it. A font that you may already be familiar with that does this is Font Awesome.
+
+In this episode I used Segoe MDL 2. Same idea, different font.
+
+You can get more info on that font, including the ability to [download it here](https://docs.microsoft.com/windows/uwp/design/style/segoe-ui-symbol-font?WT.mc_id=partlycloudy-github-masoucou#about-segoe-mdl2-assets).
+
+To get access to all the glyphs in that font - add it to the `Assets` folder in your Android project. And add it to the `Resources` folder in your iOS project.
+
+Also on iOS, you'll need to edit your `info.plist` file. Add a key `UIAppFonts` with an `<Array>` value that has a single `<String>` entry of the font's name on disk. Or most like here `SegMDL2.ttf`.
+
+Then you'll need to do something special in the `App.xaml` file in order to refer to the font later on.
+
+Getting at the font is different in iOS vs Android. So the easiest way to handle that is to create an entry in the application's `<ResourceDictionary>`.
+
+Make it look like this:
+
+<iframe>
+<script src="https://gist.github.com/codemillmatt/33b84232b02b7f519e251e474bf20c0b.js"></script>
+</iframe>
+
+The difference is what the font is named on each platform. But by doing it as a static resource - you can just refer to it by `{StaticResource SegMDL2}` from here on out.
+
+Then anytime you need to display a glyph - you can just use a `<FontImageSource>`. Setting the `FontFamily` and `Glyph` properties appropriately.
+
+This is what the moon looks like:
+
+`<FontImageSource FontFamily="{StaticResource SegMDL2}" Glyph="&#xE708;" />`
+
+You can find all the `Glyph` values for SegoeMDL 2 on the page I linked to above. One thing to remember is that you'll have to prefix the values with `&#x` to get them to work.
+
+And that's it!
+
+We're on our way to a great looking app thanks to Shell and a little bit of `<FontImageSource>` magic!
