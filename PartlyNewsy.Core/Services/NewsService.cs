@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using PartlyNewsy.Models;
 using Refit;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PartlyNewsy.Core
@@ -14,7 +15,7 @@ namespace PartlyNewsy.Core
 
         public NewsService()
         {
-            if (Device.RuntimePlatform == Device.Android)
+            if (DeviceInfo.DeviceType == DeviceType.Virtual && DeviceInfo.Platform == DevicePlatform.Android)
                 newsFunctionUrl = "http://10.0.2.2:7071/api";
 
             newsFunctionAPI = RestService.For<INewsFunctionAPI>(newsFunctionUrl);

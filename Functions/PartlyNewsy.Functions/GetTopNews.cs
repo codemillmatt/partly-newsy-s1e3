@@ -24,10 +24,10 @@ namespace PartlyNewsy.Functions
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = null)] HttpRequest req,
             ILogger log)
         {
-            var apiKeys = new ApiKeyServiceClientCredentials(Environment.GetEnvironmentVariable("SearchAPIKey"));
+            var apiKeys = new ApiKeyServiceClientCredentials(Environment.GetEnvironmentVariable("NewsSearchApiKey"));
 
             var newsClient = new NewsSearchClient(apiKeys) { 
-                Endpoint = Environment.GetEnvironmentVariable("NewsUrl")
+                Endpoint = Environment.GetEnvironmentVariable("NewsSearchUrl")
             };
 
             var returnArticles = new List<PartlyNewsy.Models.Article>();

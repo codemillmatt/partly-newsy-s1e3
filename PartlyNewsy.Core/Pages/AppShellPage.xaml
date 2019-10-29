@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PartlyNewsy.Core"
     x:Class="PartlyNewsy.Core.AppShellPage"
-    Shell.TabBarTitleColor="Red">
+    Shell.TabBarTitleColor="Red"
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarDisabledColor="Gray">
 
     <TabBar>
         <Tab Title="News" Shell.NavBarIsVisible="False">
@@ -23,7 +25,7 @@
         </Tab>
         <Tab Title="Local News">
             <Tab.Icon>
-                <FontImageSource FontFamily="{StaticResource SegMDL}" Glyph="&#xE74E;"/>
+                <FontImageSource FontFamily="{StaticResource SegMDL2}" Glyph="&#xE74E;"/>
             </Tab.Icon>
             <ShellContent>
                 <local:NewsCollectionPage />
