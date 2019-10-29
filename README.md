@@ -41,9 +41,7 @@ This is the root page for Shell applications and everything is enclosed within `
 
 So our Shell page starts to look like this:
 
-<iframe>
-<script src="https://gist.github.com/codemillmatt/e9f7c564924cdef3ddaac9128fee57ee.js"></script>
-</iframe>
+https://gist.github.com/codemillmatt/e9f7c564924cdef3ddaac9128fee57ee.js
 
 One thing to note - if a `<TabBar>` element only has one `<Tab>` in it - it will _not_ display any tabs at all.
 
