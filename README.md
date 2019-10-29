@@ -37,11 +37,31 @@ You'll have to add a `local.settings.json` file to the Azure Functions project t
 
 This is the root page for Shell applications and everything is enclosed within `<Shell></Shell>` tags.
 
-3. From there we added a `<TabBar>` element. This will allow the `NewsCollectionPage` created above to sit within a tab at the bottom of the Shell.
+3. From there we added some [Shell Tabs](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/tabs?WT.mc_id=partlycloudy-github-masoucou) with a `<TabBar>` element. This will allow the `NewsCollectionPage` created above to sit within a tab at the bottom of the Shell.
 
 So our Shell page starts to look like this:
 
-https://gist.github.com/codemillmatt/e9f7c564924cdef3ddaac9128fee57ee.js
+```language-xaml
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PartlyNewsy.Core"
+    x:Class="PartlyNewsy.Core.AppShellPage"
+    Shell.TabBarTitleColor="Red"
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarDisabledColor="Gray">
+
+    <TabBar>
+        <Tab Title="News">
+            <ShellContent Title="Ny News">
+                <local:NewsCollectionPage />
+            </ShellContent>
+        </Tab>
+    </TabBar>
+
+</Shell>
+```
 
 One thing to note - if a `<TabBar>` element only has one `<Tab>` in it - it will _not_ display any tabs at all.
 
@@ -53,9 +73,38 @@ One thing to note - if a `<TabBar>` element only has one `<Tab>` in it - it will
 
 This is telling Shell - hey - I want a bunch of sub pages in here - so Shell says - let's put them along the top!
 
-<iframe>
-<script src="https://gist.github.com/codemillmatt/c805ec773676d8ee34f32a4f251abf4b.js"></script>
-</iframe>
+```language-xaml
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PartlyNewsy.Core"
+    x:Class="PartlyNewsy.Core.AppShellPage"
+    Shell.TabBarTitleColor="Red"
+    Shell.TabBarBackgroundColor="White"
+    Shell.TabBarDisabledColor="Gray">
+
+    <TabBar>
+        <Tab Title="News" Shell.NavBarIsVisible="False">
+            <ShellContent Title="Ny News">
+                <local:NewsCollectionPage />
+            </ShellContent>
+            <ShellContent Title="US News">
+                <local:NewsCollectionPage />
+            </ShellContent>
+            <ShellContent Title="World News">
+                <local:NewsCollectionPage />
+            </ShellContent>
+        </Tab>
+        <Tab Title="Local News">
+            <ShellContent>
+                <local:NewsCollectionPage />
+            </ShellContent>
+        </Tab>
+    </TabBar>
+
+</Shell>
+```
 
 6. Then we spiced things up by adding graphics to the tabs along the bottom of the page.
 
@@ -63,7 +112,7 @@ We did this with glyphs from a special font ... kinda like Font Awesome. And the
 
 You can use regular images too if you wanted to. But the cool thing about using a font is that you get a ton of images .. I mean glyphs all built into a single package, if you will.
 
-7. Then finally we did some navigation, using Shell's built-in navigation framework. That involved creating another class called `ArticleDetailPage.xaml` and using parameter binding to send information to it.
+7. Then finally we did some navigation, using Shell's [built-in navigation framework](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/navigation?WT.mc_id=partlycloudy-github-masoucou). That involved creating another class called `ArticleDetailPage.xaml` and using parameter binding to send information to it.
 
 That's a wrap! Our application is starting to take on the look of the final application by using Xamarin.Forms Shell!
 
@@ -93,6 +142,8 @@ And you perform that navigation in shell with `Shell.Current.GoToAsync("articled
 
 But it's like a relative URL because we can attach values at the end of the `articledetail` in query string format. Like a url.
 
+Which means... YOU CAN [PASS DATA](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/navigation?WT.mc_id=partlycloudy-github-masoucou#pass-data) SUPER EASY!
+
 So ... if I wanted to pass along the url for an article. I could create a query parameter named `articleUrl` and attach the url to it.
 
 Then the full value for the route would look like this: `articledetail?articleUrl=THE-URL-GOES-HERE`. And I would pass that whole string to the `Shell.Current.GoToAsync()` function.
@@ -111,7 +162,7 @@ Of course - we'd have to create that property too. And you can call the properti
 
 ## Styling the Shell
 
-Even though Shell is very prescriptive on how it lays out tabs, and flyouts - it doesn't limit you. In fact you can customize it a ton. In the video you saw how we hid the `NavigationBar`.
+Even though Shell is very prescriptive on how it lays out tabs, and flyouts - it doesn't limit you. In fact you can [customize it a ton](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/configuration?WT.mc_id=partlycloudy-github-masoucou). In the video you saw how we hid the `NavigationBar`.
 
 Here I want to show you how you can make the app on Android look good. Go ahead an run the Android version of the app now. It'll look like this:
 
@@ -141,6 +192,8 @@ In this episode I used Segoe MDL 2. Same idea, different font.
 
 You can get more info on that font, including the ability to [download it here](https://docs.microsoft.com/windows/uwp/design/style/segoe-ui-symbol-font?WT.mc_id=partlycloudy-github-masoucou#about-segoe-mdl2-assets).
 
+[This here has all the in-depth goodness](https://docs.microsoft.com/xamarin/xamarin-forms/user-interface/text/fonts?WT.mc_id=partlycloudy-github-masoucou#display-font-icons) on Forms with Font Icons, but the quick version - keep on reading!
+
 To get access to all the glyphs in that font - add it to the `Assets` folder in your Android project. And add it to the `Resources` folder in your iOS project.
 
 Also on iOS, you'll need to edit your `info.plist` file. Add a key `UIAppFonts` with an `<Array>` value that has a single `<String>` entry of the font's name on disk. Or most like here `SegMDL2.ttf`.
@@ -151,9 +204,16 @@ Getting at the font is different in iOS vs Android. So the easiest way to handle
 
 Make it look like this:
 
-<iframe>
-<script src="https://gist.github.com/codemillmatt/33b84232b02b7f519e251e474bf20c0b.js"></script>
-</iframe>
+```language-xaml
+<ResourceDictionary>
+  <OnPlatform
+      x:Key="SegMDL2"
+      x:TypeArguments="x:String"
+      Android="SegMDL2.ttf#Segoe MDL2 Assets"
+      iOS="Segoe MDL2 Assets"
+  />
+</ResourceDictionary>
+```
 
 The difference is what the font is named on each platform. But by doing it as a static resource - you can just refer to it by `{StaticResource SegMDL2}` from here on out.
 

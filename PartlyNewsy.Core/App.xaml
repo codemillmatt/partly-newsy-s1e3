@@ -7,16 +7,16 @@
              x:Class="PartlyNewsy.App">
 
     <Application.Resources>
-        <ResourceDictionary>
+<ResourceDictionary>
             
-            <OnPlatform
-                x:Key="SegMDL2"
-                x:TypeArguments="x:String"
-                Android="SegMDL2.ttf#Segoe MDL2 Assets"
-                iOS="Segoe MDL2 Assets"
-            />
+<OnPlatform
+    x:Key="SegMDL2"
+    x:TypeArguments="x:String"
+    Android="SegMDL2.ttf#Segoe MDL2 Assets"
+    iOS="Segoe MDL2 Assets"
+/>
             
-        </ResourceDictionary>
+</ResourceDictionary>
     </Application.Resources>
 
 </Application>
