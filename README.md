@@ -18,6 +18,8 @@ Then in [episode 2](https://channel9.msdn.com/Shows/Partly-Cloudy/Inform-Me-Bing
 
 ### What Happened in This Episode
 
+![Drawing of a turtle for episode 3](https://res.cloudinary.com/code-mill-technologies-inc/image/upload/c_scale,e_shadow:40,h_600/v1572448684/thumbnail_66403_n6kpbz.jpg)
+
 In this episode we give our user interface some structure through [Xamarin.Forms Shell](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/?WT.mc_id=partlycloudy-github-masoucou).
 
 #### Xamarin.Forms Shell
