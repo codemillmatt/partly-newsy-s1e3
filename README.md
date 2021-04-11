@@ -12,15 +12,15 @@ We're building a clone of the Microsoft News app.
 
 ### Past Episodes 
 
-In [episode 1](https://channel9.msdn.com/Shows/Partly-Cloudy/Hello-News-Intro-project-structure-and-HTTP-requests?WT.mc_id=partlycloudy-github-masoucou) we setup the project structure and started to call an Azure Function.
+In [episode 1](https://channel9.msdn.com/Shows/Partly-Cloudy/Hello-News-Intro-project-structure-and-HTTP-requests?WT.mc_id=mobile-0000-masoucou) we setup the project structure and started to call an Azure Function.
 
-Then in [episode 2](https://channel9.msdn.com/Shows/Partly-Cloudy/Inform-Me-Bing-News-API?WT.mc_id=partlycloudy-github-masoucou) we made that Azure Function invoke the Bing News Search API, so we could view the news in our app.
+Then in [episode 2](https://channel9.msdn.com/Shows/Partly-Cloudy/Inform-Me-Bing-News-API?WT.mc_id=mobile-0000-masoucou) we made that Azure Function invoke the Bing News Search API, so we could view the news in our app.
 
 ### What Happened in This Episode
 
 ![Drawing of a turtle for episode 3](http://res.cloudinary.com/code-mill-technologies-inc/image/upload/c_scale,e_shadow:40,h_600/v1572449030/thumbnail_66403_n6kpbz.jpg)
 
-In this episode we give our user interface some structure through [Xamarin.Forms Shell](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/?WT.mc_id=partlycloudy-github-masoucou).
+In this episode we give our user interface some structure through [Xamarin.Forms Shell](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/?WT.mc_id=mobile-0000-masoucou).
 
 #### Xamarin.Forms Shell
 
@@ -39,7 +39,7 @@ You'll have to add a `local.settings.json` file to the Azure Functions project t
 
 This is the root page for Shell applications and everything is enclosed within `<Shell></Shell>` tags.
 
-3. From there we added some [Shell Tabs](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/tabs?WT.mc_id=partlycloudy-github-masoucou) with a `<TabBar>` element. This will allow the `NewsCollectionPage` created above to sit within a tab at the bottom of the Shell.
+3. From there we added some [Shell Tabs](https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/tabs?WT.mc_id=mobile-0000-masoucou) with a `<TabBar>` element. This will allow the `NewsCollectionPage` created above to sit within a tab at the bottom of the Shell.
 
 So our Shell page starts to look like this:
 
